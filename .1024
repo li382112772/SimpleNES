@@ -1,0 +1,15 @@
+compile_command: "gcc main.cpp -lstdc++"
+run_command: "./a.out"
+debug:
+  compile: gcc -g -O0 main.cpp -lstdc++
+  support: true
+  launch:
+    program: ./a.out
+    MIMode: gdb
+    miDebuggerPath: gdb
+    externalConsole: true
+    cwd: .
+    setupCommands:
+      - text: -enable-pretty-printing
+        ignoreFailures: true
+    miDebuggerArgs: -q -ex quit; wait() { fg >/dev/null; }; gdb -q --interpreter=mi # gdb情况下使用
